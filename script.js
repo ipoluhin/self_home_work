@@ -75,12 +75,10 @@ const messageFunction = {
 			let secondNum = tempNumber[1];
 			this.resoult(firstNum, secondNum);
 		}
-		if (l != 0) {
-			document.write(
-				`----------------------------------------------------------------</br>
-		Найдено ${l} уникальных пар(-ы) чисел, дающих в сумме ${k}.</br>`
-			);
-		}
+		document.write(
+			`----------------------------------------------------------------</br>
+		Найдено ${l} уникальных пары чисел, дающих в сумме ${k}.</br>`
+		);
 	},
 	resoult(firstNum, secondNum) {
 		document.write("*[" + firstNum + ", " + secondNum + "]</br>");
