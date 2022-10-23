@@ -1,15 +1,3 @@
-/*let slogan = "В ожидании новых задач...";
-let i = 0;
-function writeWait() {
-	symbol = slogan[i];
-	setTimeout(() => {
-		document.write(slogan + "</br>");
-	}, i * 1000);
-}
-for (i; i <= slogan.length; i++) {
-	writeWait();
-}*/
-
 const settings = {
 	Arr: [-1, 1, 4, -6, 2, 6, 8, -7, 17, 3, 7, 15, 10],
 	controlSum: +prompt(`Задайте параметр - контрольная сумма двух чисел.`),
