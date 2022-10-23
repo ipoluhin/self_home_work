@@ -12,21 +12,21 @@ for (i; i <= slogan.length; i++) {
 
 const settings = {
 	Arr: [-1, 1, 4, -6, 2, 6, 8, -7, 17, 3, 7, 15, 10],
-	k: +prompt(`Задайте параметр - контрольная сумма двух чисел.`),
+	controlSum: +prompt(`Задайте параметр - контрольная сумма двух чисел.`),
 	resArr: [],
 };
 
-const activavitionFunction = {
+const activavitionFunctions = {
 	startFunction() {
 		this.chekSumOfNumbers();
-		messageFunction.startMessage(settings.k);
+		messageFunctions.startMessage();
 	},
 	chekSumOfNumbers() {
-		for (let n = 0; n < settings.Arr.length; n++) {
-			for (let m = 1; m < settings.Arr.length; m++) {
-				let resNum = settings.Arr[n] + settings.Arr[m];
-				if (resNum == settings.k) {
-					this.chekResNumbersInResultMain(settings.Arr[n], settings.Arr[m]);
+		for (let i = 0; i < settings.Arr.length; i++) {
+			for (let j = 1; j < settings.Arr.length; j++) {
+				let resNum = settings.Arr[i] + settings.Arr[j];
+				if (resNum == settings.controlSum) {
+					this.chekResNumbersInResultMain(settings.Arr[i], settings.Arr[j]);
 				}
 			}
 		}
@@ -41,8 +41,8 @@ const activavitionFunction = {
 		}
 	},
 	chekResNumbersInResultStaff(firstNum, secondNum) {
-		for (let t = 0; t < settings.resArr.length; t++) {
-			const tempNumber = settings.resArr[t];
+		for (let i = 0; i < settings.resArr.length; i++) {
+			const tempNumber = settings.resArr[i];
 			if (tempNumber != undefined) {
 				if (tempNumber[0] == firstNum || tempNumber[0] == secondNum) {
 					if (tempNumber[1] == firstNum || tempNumber[1] == secondNum) {
@@ -55,21 +55,22 @@ const activavitionFunction = {
 	},
 };
 
-const messageFunction = {
-	startMessage(k) {
-		let l = settings.resArr.length;
-		if (l != 0) {
+const messageFunctions = {
+	startMessage() {
+		if (settings.resArr.length != 0) {
 			document.write(`Необходимо найти 
 		в массиве чисел [-1, 1, 4, -6, 2, 6, 8, -7, 17, 3, 7, 15, 10]</br> 
-уникальные пары чисел, в сумме дающих число ${k}.</br>
+уникальные пары чисел, в сумме дающих число ${settings.controlSum}.</br>
 ----------------------------------------------------------------</br>`);
-			this.finalMessage(l, k);
+			this.finalMessage();
 		} else {
-			document.write(`Не найдено подходящих пар чисел, в сумме дающих ${k}.`);
+			document.write(
+				`Не найдено подходящих пар чисел, в сумме дающих ${settings.controlSum}.`
+			);
 		}
 	},
-	finalMessage(l, k) {
-		for (let i = 0; i < l; i++) {
+	finalMessage() {
+		for (let i = 0; i < settings.resArr.length; i++) {
 			const tempNumber = settings.resArr[i];
 			let firstNum = tempNumber[0];
 			let secondNum = tempNumber[1];
@@ -77,12 +78,12 @@ const messageFunction = {
 		}
 		document.write(
 			`----------------------------------------------------------------</br>
-		Найдено ${l} уникальных пары чисел, дающих в сумме ${k}.</br>`
+		Найдено ${settings.resArr.length} уникальных пары чисел, дающих в сумме ${settings.controlSum}.</br>`
 		);
 	},
 	resoult(firstNum, secondNum) {
-		document.write("*[" + firstNum + ", " + secondNum + "]</br>");
+		document.write(`*[${firstNum}, ${secondNum}]</br>`);
 	},
 };
 
-activavitionFunction.startFunction(settings.k);
+activavitionFunctions.startFunction();
