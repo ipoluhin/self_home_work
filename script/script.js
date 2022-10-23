@@ -1,10 +1,20 @@
 const settings = {
-	Arr: [-1, 1, 4, -6, 2, 6, 8, -7, 17, 3, 7, 15, 10],
+	api: "api/",
 	controlSum: +prompt(`Задайте параметр - контрольная сумма двух чисел.`),
+	Arr: [],
 	resArr: [],
 };
 
 const activavitionFunctions = {
+	init() {
+		fetch(`${settings.api}api.json`)
+			.then((result) => result.json())
+			.then((data) => {
+				settings.Arr = [...data];
+				this.startFunction();
+			})
+			.catch((err) => document.write(err));
+	},
 	startFunction() {
 		this.chekSumOfNumbers();
 		messageFunctions.startMessage();
@@ -74,4 +84,4 @@ const messageFunctions = {
 	},
 };
 
-activavitionFunctions.startFunction();
+activavitionFunctions.init();
