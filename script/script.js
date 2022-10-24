@@ -1,5 +1,5 @@
 const settings = {
-	api: "api/",
+	api: "data/",
 	controlSum: +prompt(`Задайте параметр - контрольная сумма двух чисел.`),
 	Arr: [],
 	resArr: [],
@@ -7,7 +7,7 @@ const settings = {
 
 const activavitionFunctions = {
 	init() {
-		fetch(`${settings.api}api.json`)
+		fetch(`${settings.api}data.json`)
 			.then((result) => result.json())
 			.then((data) => {
 				settings.Arr = [...data];
@@ -56,14 +56,13 @@ const activavitionFunctions = {
 const messageFunctions = {
 	startMessage() {
 		if (settings.resArr.length != 0) {
-			document.write(`Необходимо найти 
-		в массиве чисел [-1, 1, 4, -6, 2, 6, 8, -7, 17, 3, 7, 15, 10]</br> 
-уникальные пары чисел, в сумме дающих число ${settings.controlSum}.</br>
+			document.write(`Задан массив чисел <b>[${settings.Arr}]</b>.</br>
+			Необходимо найти уникальные пары чисел, в сумме дающих число <b>${settings.controlSum}</b>.</br>
 ----------------------------------------------------------------</br>`);
 			this.finalMessage();
 		} else {
 			document.write(
-				`Не найдено подходящих пар чисел, в сумме дающих ${settings.controlSum}.`
+				`Не найдено подходящих пар чисел, в сумме дающих <b>${settings.controlSum}</b>.`
 			);
 		}
 	},
@@ -76,7 +75,7 @@ const messageFunctions = {
 		}
 		document.write(
 			`----------------------------------------------------------------</br>
-		Найдено ${settings.resArr.length} уникальных пары чисел, дающих в сумме ${settings.controlSum}.</br>`
+		Найдено <b>${settings.resArr.length}</b> уникальных пар чисел, дающих в сумме <b>${settings.controlSum}</b>.</br>`
 		);
 	},
 	resoult(firstNum, secondNum) {
