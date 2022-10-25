@@ -1,3 +1,10 @@
+/**
+ * Настройки:
+ * api - шаблон адреса с базой
+ * controlSum - контрольная сумма, задаваемая пользователем
+ * Arr - исходный массив чисел. Изначально пустой. Данные получает из базы методом init() объекта activavitionFunctions
+ * resArr - временный массив для проверки соответствия и уникальности пар чисел
+ */
 const settings = {
 	api: "data/",
 	controlSum: +prompt(`Задайте параметр - контрольная сумма двух чисел.`),
@@ -5,6 +12,16 @@ const settings = {
 	resArr: [],
 };
 
+/**
+ * Стартовые функции:
+ * init() - получает данные из массива исходных чисел ( файл data/data.js).
+ * startFunction() - запускает методы обработки чисел для нахождения пар и методов вывода результирующей информации.
+ * chekSumOfNumbers() - перебирает числа из массива и отдает их методу chekResNumbersInResultMain() на проверку уникальности.
+ * chekResNumbersInResultMain() - получает числа на проверку, создавая веременный массив с паров чисел для проверки уникальности,
+ * с помощью метода chekResNumbersInResultStaff(firstNum, secondNum).
+ * chekResNumbersInResultStaff(firstNum, secondNum) - непосредственная проверка чисел на уникальность.
+ * Параметры firstNum, secondNum - Пары чисел из временного массива метода chekResNumbersInResultMain() для проверки уникальности.
+ */
 const activavitionFunctions = {
 	init() {
 		fetch(`${settings.api}data.json`)
@@ -53,6 +70,12 @@ const activavitionFunctions = {
 	},
 };
 
+/**
+ * Функции вывода результатов:
+ * startMessage() - в случае наличия хотя бы одной пары выдает текст задачи либо предупреждает, что пар чисел не найдено.
+ * resoult(firstNum, secondNum) - выводит на экран найденные пары чисел.
+ * finalMessage() - сообщает о количестве уникальных пар.
+ */
 const messageFunctions = {
 	startMessage() {
 		if (settings.resArr.length != 0) {
@@ -83,4 +106,7 @@ const messageFunctions = {
 	},
 };
 
+/**
+ * запуск приложения.
+ */
 activavitionFunctions.init();
