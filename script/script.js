@@ -39,7 +39,7 @@
 		},
 		chekSumOfNumbers() {
 			for (let i = 0; i < settings.Arr.length; i++) {
-				for (let j = 1; j < settings.Arr.length; j++) {
+				for (let j = 0; j < settings.Arr.length; j++) {
 					let resNum = settings.Arr[i] + settings.Arr[j];
 					if (resNum == settings.controlSum) {
 						this.chekResNumbersInResultMain(settings.Arr[i], settings.Arr[j]);
@@ -80,9 +80,10 @@
 	const messageFunctions = {
 		startMessage() {
 			if (settings.resArr.length != 0) {
-				document.write(`Задан массив чисел <b>[${settings.Arr}]</b>.</br>
+				document.write(`Задан массив чисел: <b>[${settings.Arr}]</b>.</br>
 			Необходимо найти уникальные пары чисел, в сумме дающих число <b>${settings.controlSum}</b>.</br>
-----------------------------------------------------------------</br>`);
+----------------------------------------------------------------</br>
+Найденные пары:</br>`);
 				this.finalMessage();
 			} else {
 				document.write(
