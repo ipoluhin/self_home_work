@@ -1,14 +1,16 @@
 {
 	/**
 	 * Настройки:
-	 * api - шаблон адреса с базой
-	 * controlSum - контрольная сумма, задаваемая пользователем
-	 * Arr - исходный массив чисел. Изначально пустой. Данные получает из базы методом init() объекта activavitionFunctions
-	 * resArr - временный массив для проверки соответствия и уникальности пар чисел
+	 * api - шаблон адреса с базой.
+	 * controlSum - контрольная сумма, задаваемая пользователем.
+	 * Arr - исходный массив чисел. Изначально пустой. Данные получает из базы методом init() объекта activationFunctions.
+	 * resArr - временный массив для проверки соответствия и уникальности пар чисел.
+	 * errText - текст ошибки в случае проблем с доступом к исходному массиву чисел.
 	 */
 	const settings = {
 		api: "data/",
 		controlSum: +prompt(`Задайте параметр - контрольная сумма двух чисел.`),
+		errText: `Не найден массив с числами. Проверьте путь к массиву.`,
 		Arr: [],
 		resArr: [],
 	};
@@ -23,7 +25,7 @@
 	 * chekResNumbersInResultStaff(firstNum, secondNum) - непосредственная проверка чисел на уникальность.
 	 * Параметры firstNum, secondNum - Пары чисел из временного массива метода chekResNumbersInResultMain() для проверки уникальности.
 	 */
-	const activavitionFunctions = {
+	const activationFunctions = {
 		init() {
 			fetch(`${settings.api}data.json`)
 				.then((result) => result.json())
@@ -31,7 +33,7 @@
 					settings.Arr = [...data];
 					this.startFunction();
 				})
-				.catch((err) => document.write(err));
+				.catch(() => document.write(settings.errText));
 		},
 		startFunction() {
 			this.chekSumOfNumbers();
@@ -74,7 +76,8 @@
 	/**
 	 * Функции вывода результатов:
 	 * startMessage() - в случае наличия хотя бы одной пары выдает текст задачи либо предупреждает, что пар чисел не найдено.
-	 * resoult(firstNum, secondNum) - выводит на экран найденные пары чисел.
+	 * preparingResultNumbersToPrinting() - подготавливает найденные пары чисел к печати.
+	 * printingResoultNumbers(firstNum, secondNum) - выводит на экран найденные пары чисел.
 	 * finalMessage() - сообщает о количестве уникальных пар.
 	 */
 	const messageFunctions = {
@@ -91,25 +94,28 @@
 				);
 			}
 		},
-		finalMessage() {
+		preparingResultNumbersToPrinting() {
 			for (let i = 0; i < settings.resArr.length; i++) {
 				const tempNumber = settings.resArr[i];
 				let firstNum = tempNumber[0];
 				let secondNum = tempNumber[1];
-				this.resoult(firstNum, secondNum);
+				this.printingResoultNumbers(firstNum, secondNum);
 			}
+		},
+		printingResoultNumbers(firstNum, secondNum) {
+			document.write(`*[${firstNum}, ${secondNum}]</br>`);
+		},
+		finalMessage() {
+			this.preparingResultNumbersToPrinting();
 			document.write(
 				`----------------------------------------------------------------</br>
 		Найдено <b>${settings.resArr.length}</b> уникальных пар чисел, дающих в сумме <b>${settings.controlSum}</b>.</br>`
 			);
-		},
-		resoult(firstNum, secondNum) {
-			document.write(`*[${firstNum}, ${secondNum}]</br>`);
 		},
 	};
 
 	/**
 	 * запуск приложения.
 	 */
-	activavitionFunctions.init();
+	activationFunctions.init();
 }
