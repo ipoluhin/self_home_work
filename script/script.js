@@ -48,9 +48,11 @@
 		chekSumOfNumbers() {
 			for (let i = 0; i < settings.Arr.length; i++) {
 				for (let j = 0; j < settings.Arr.length; j++) {
-					let resNum = settings.Arr[i] + settings.Arr[j];
-					if (resNum == settings.controlSum) {
-						this.chekResNumbersInResultMain(settings.Arr[i], settings.Arr[j]);
+					if (j != i) {
+						let resNum = settings.Arr[i] + settings.Arr[j];
+						if (resNum == settings.controlSum) {
+							this.chekResNumbersInResultMain(settings.Arr[i], settings.Arr[j]);
+						}
 					}
 				}
 			}
