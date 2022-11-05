@@ -98,7 +98,7 @@
 				this.finalMessage();
 			} else {
 				document.write(
-					`Не найдено подходящих пар чисел, в сумме дающих <b>${settings.controlSum}</b>.`
+					`В масиве заданных чисел <b>[${settings.Arr}]</b> не найдено подходящих пар чисел, </br>в сумме дающих <b>${settings.controlSum}</b>.`
 				);
 			}
 		},
