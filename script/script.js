@@ -33,7 +33,11 @@
 				.then((result) => result.json())
 				.then((data) => {
 					settings.Arr = [...data];
+				})
+				.then(() => {
 					this.setControlSum();
+				})
+				.then(() => {
 					this.startFunction();
 				})
 				.catch(() => document.write(settings.errText));
