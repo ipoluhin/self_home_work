@@ -11,7 +11,7 @@
 		api: "./data/",
 		controlSum: undefined,
 		Arr: [],
-		errText: `Не найден массив с числами. Проверьте путь к массиву.`,
+		errText: `Ошибка! Не найден массив с числами. Проверьте путь к массиву.`,
 		resArr: [],
 	};
 
@@ -33,20 +33,31 @@
 				.then((result) => result.json())
 				.then((data) => {
 					settings.Arr = [...data];
+					console.log(`Данные массива получены.`);
 				})
 				.then(() => {
 					this.setControlSum();
+					console.log(`Контрольная сумма установлена.`);
 				})
 				.then(() => {
 					this.startFunction();
+					console.log(`Приложение отработало.`);
 				})
-				.catch(() => document.write(settings.errText));
+				.catch(() => {
+					document.write(settings.errText);
+					console.log(
+						`Ошибка! Не найден массив с числами. Проверьте путь к массиву: <${settings.api}data.json>`
+					);
+				});
 		},
 		setControlSum() {
-			settings.controlSum = +prompt(`Задайте параметр - контрольная сумма двух чисел.`);
+			settings.controlSum = +prompt(
+				`Задан массив чисел. Для подбора двух чисел из массива, дающих в сумме контрольное число, необходимо задать это число.`
+			);
 		},
 		startFunction() {
 			this.chekSumOfNumbers();
+			console.log(`Поиск чисел произведен.`);
 			messageFunctions.startMessage();
 		},
 		chekSumOfNumbers() {
@@ -99,8 +110,10 @@
 			Необходимо найти уникальные пары чисел, в сумме дающих число <b>${settings.controlSum}</b>.</br>
 ----------------------------------------------------------------</br>
 Найденные пары:</br>`);
+				console.log(`Требуемые пары чисел найдены.`);
 				this.finalMessage();
 			} else {
+				console.log(`Требуемые пары чисел не найдены.`);
 				document.write(
 					`В масиве заданных чисел <b>[${settings.Arr}]</b> не найдено подходящих пар чисел, </br>в сумме дающих <b>${settings.controlSum}</b>.`
 				);
