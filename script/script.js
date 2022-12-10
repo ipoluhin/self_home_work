@@ -17,15 +17,16 @@
 
 	/**
 	 * Стартовые функции:
-	 * init() - получает данные из массива исходных чисел ( файл data/data.js).
+	 * init() - получает данные из массива исходных чисел (файл data/data.js).
 	 * setControlSum - в случае удачной попытки получения исходного массива с числами,
 	 * просит пользователя задать контрольную сумму controlSum.
 	 * startFunction() - запускает методы обработки чисел для нахождения пар и методов вывода результирующей информации.
 	 * chekSumOfNumbers() - перебирает числа из массива и отдает их методу chekResNumbersInResultMain() на проверку уникальности.
-	 * chekResNumbersInResultMain() - получает числа на проверку, создавая веременный массив с паров чисел для проверки уникальности,
+	 * chekResNumbersInResultMain() - получает числа на проверку, создавая временный массив с паров чисел для проверки уникальности,
 	 * с помощью метода chekResNumbersInResultStaff(firstNum, secondNum).
 	 * chekResNumbersInResultStaff(firstNum, secondNum) - непосредственная проверка чисел на уникальность.
-	 * Параметры firstNum, secondNum - Пары чисел из временного массива метода chekResNumbersInResultMain() для проверки уникальности.
+	 * Параметры firstNum, secondNum - Пары чисел из временного массива метода chekResNumbersInResultMain() и
+	 * chekResNumbersInResultStaff(firstNum, secondNum) для проверки уникальности.
 	 */
 	const activationFunctions = {
 		init() {
