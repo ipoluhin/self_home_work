@@ -21,11 +21,11 @@
 	 * setControlSum - в случае удачной попытки получения исходного массива с числами,
 	 * просит пользователя задать контрольную сумму controlSum.
 	 * startFunction() - запускает методы обработки чисел для нахождения пар и методов вывода результирующей информации.
-	 * chekSumOfNumbers() - перебирает числа из массива и отдает их методу chekResNumbersInResultMain() на проверку уникальности.
-	 * chekResNumbersInResultMain() - получает числа на проверку, создавая временный массив с паров чисел для проверки уникальности,
+	 * chekSumOfNumbers() - перебирает числа из массива и отдает их методу chekResNumbersInResultInit() на проверку уникальности.
+	 * chekResNumbersInResultInit() - получает числа на проверку, создавая временный массив с паров чисел для проверки уникальности,
 	 * с помощью метода chekResNumbersInResultStaff(firstNum, secondNum).
 	 * chekResNumbersInResultStaff(firstNum, secondNum) - непосредственная проверка чисел на уникальность.
-	 * Параметры firstNum, secondNum - Пары чисел из временного массива метода chekResNumbersInResultMain() и
+	 * Параметры firstNum, secondNum - Пары чисел из временного массива метода chekResNumbersInResultInit() и
 	 * chekResNumbersInResultStaff(firstNum, secondNum) для проверки уникальности.
 	 */
 	const activationFunctions = {
@@ -67,13 +67,13 @@
 					if (j != i) {
 						let resNum = settings.Arr[i] + settings.Arr[j];
 						if (resNum == settings.controlSum) {
-							this.chekResNumbersInResultMain(settings.Arr[i], settings.Arr[j]);
+							this.chekResNumbersInResultInit(settings.Arr[i], settings.Arr[j]);
 						}
 					}
 				}
 			}
 		},
-		chekResNumbersInResultMain(firstNum, secondNum) {
+		chekResNumbersInResultInit(firstNum, secondNum) {
 			const tempResArr = [];
 			tempResArr.push(firstNum, secondNum);
 			chekRes = this.chekResNumbersInResultStaff(firstNum, secondNum);
